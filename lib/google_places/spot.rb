@@ -397,11 +397,13 @@ module GooglePlaces
     # @option options [Integer] :retry_options[:delay] (5) the delay between each retry in seconds
     def self.by_query(query, api_key, options = {})
       inputtype = options.delete(:inputtype) || 'textquery'
+      fields = options.delete(:fields)
       retry_options = options.delete(:retry_options) || {}
 
       options = {
         :input => query,
         :inputtype => inputtype,
+        :fields => fields,
         :key => api_key,
         :retry_options => retry_options,
         :results_key => 'candidates'
